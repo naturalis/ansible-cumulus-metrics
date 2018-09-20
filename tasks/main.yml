@@ -6,6 +6,9 @@
     shell: /bin/false
     system: no
     createhome: no
+  when: "'spine' in group_names or 'uplink' in group_names"
+  tags:
+    - prometheus
 
 - name: Copy node_exporter file
   copy:
@@ -14,13 +17,19 @@
     owner: node_exporter
     group: node_exporter
     mode: 0755
+  when: "'spine' in group_names or 'uplink' in group_names"
   notify: restart node_exporter
+  tags:
+    - prometheus
 
 - name: Make systemd service for node_exporter
   copy:
     src: node_exporter.service
     dest: /etc/systemd/system/node_exporter@mgmt.service
+  when: "'spine' in group_names or 'uplink' in group_names"
   notify: restart node_exporter
+  tags:
+    - prometheus
 
 - name: Start node_exporter
   systemd:
@@ -28,6 +37,9 @@
     enabled: yes
     state: started
     daemon_reload: yes
+  when: "'spine' in group_names or 'uplink' in group_names"
+  tags:
+    - prometheus
 
 - name: Add remote syslog server
   lineinfile:
@@ -35,6 +47,8 @@
     create: true
     line: "*.*   @{{ rsyslog_server }}:{{ rsyslog_port }}   # UDP"
   notify: restart rsyslog
+  tags:
+    - rsyslog
 
 - name: create and modify snmpd.conf
   template:
@@ -42,8 +56,12 @@
     dest: /etc/snmp/snmpd.conf
     mode: 0644
   notify: restart snmpd
+  tags:
+    - snmp
 
 - name: enable snmpd at boottime
   service:
     name: snmpd
     enabled: yes
+  tags:
+    - snmp
