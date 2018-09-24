@@ -1,17 +1,17 @@
 ---
-- name: restart node_exporter
+- name: Restart node_exporter
   systemd:
     name: node_exporter@mgmt
     enabled: yes
     state: restarted
     daemon_reload: yes
 
-- name: restart rsyslog
+- name: Restart rsyslog
   service:
     name: rsyslog
     state: restarted
 
-- name: restart snmpd
+- name: Restart snmpd
   service:
     name: snmpd
     state: restarted
