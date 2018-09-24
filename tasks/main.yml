@@ -13,4 +13,9 @@
   include: rsyslog.yml
   tags:
     - rsyslog
+
+- name: Run nclu show command every minute
+  include: nclu.yml
+  tags:
+    - nclu
 ...
