@@ -8,4 +8,9 @@
   include: snmp.yml
   tags:
     - snmp
+
+- name: Forward rsyslog messages
+  include: rsyslog.yml
+  tags:
+    - rsyslog
 ...
