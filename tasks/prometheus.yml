@@ -18,7 +18,7 @@
     group: node_exporter
     mode: 0755
   when: "'spine' in group_names or 'uplink' in group_names"
-  notify: restart node_exporter
+  notify: Restart node_exporter
   tags:
     - prometheus
 
@@ -27,7 +27,7 @@
     src: node_exporter.service
     dest: /etc/systemd/system/node_exporter@mgmt.service
   when: "'spine' in group_names or 'uplink' in group_names"
-  notify: restart node_exporter
+  notify: Restart node_exporter
   tags:
     - prometheus
 
