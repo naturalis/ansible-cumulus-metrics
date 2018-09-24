@@ -1,0 +1,5 @@
+---
+snmp_location: location
+snmp_contact: contact
+snmp_ro_community: community
+...
