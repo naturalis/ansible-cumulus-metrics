@@ -45,7 +45,7 @@ None.
 
     - hosts: switches
       roles:
-        - ansible-role-cumulus-monitoring
+        - ansible-cumulus-metrics
 
 ## License
 
