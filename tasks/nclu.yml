@@ -1,0 +1,35 @@
+---
+- name: Set jessie source list in apt
+  apt_repository: 
+    repo: "deb http://ftp.nl.debian.org/debian/ jessie main"
+    state: present
+    mode: 0644
+#  when: ansible_lsb.codename == "jessie"
+
+- name: Install jq and update apt's cache
+  apt:
+    name: jq
+    state: latest
+    update_cache: yes
+
+- name: Create cron job to collect interface metrics, run every minute
+  cron:
+    name: "net show int json"
+    job: "net show int json | jq -c '. | to_entries[] | {'interface': .key, 'value': .value} | . + .value | del(.value) | . + .iface_obj | del(.iface_obj) | . + .counters | del(.counters) | if .lldp != null then . + .lldp[] | del(.lldp) | del(.system_descr) else . end'
+ >> /var/log/nclu-int.json"
+
+- name: Add custom log file tot rsyslog
+  blockinfile:
+    path: /etc/rsyslog.d/60-nclu-int.conf
+    create: yes
+    block: |
+      $ModLoad imfile
+      $InputFileName /var/log/nclu-int.json
+      $InputFileTag nclu-int:
+      $InputFileStateFile nclu-int
+      $InputFileSeverity info
+      $InputFileFacility local7
+      $InputRunFileMonitor
+      $InputFilePollInterval 1
+  notify: Restart rsyslog
+...
