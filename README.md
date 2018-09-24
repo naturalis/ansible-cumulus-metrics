@@ -24,18 +24,7 @@ None.
 
 ## Role Variables
 
-Available variables are listed below:
-```bash
-node_exporter_version: 0.16.0
-rsyslog_server: 172.16.200.2
-rsyslog_port: 512
-snmp_ro_community: public
-snmp_location: Leiden
-snmp_contact: infra@naturalis.nl
-snmp_allowed_hosts:
-  - 172.16.200.10/32
-  - 172.16.200.20/32
-```
+See defaults/main.yml.
 
 ## Dependencies
 
