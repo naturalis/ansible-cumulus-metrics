@@ -4,27 +4,8 @@
   tags:
     - prometheus
 
-- name: Add remote syslog server
-  lineinfile:
-    path: /etc/rsyslog.d/11-remotesyslog.conf
-    create: true
-    line: "*.*   @{{ rsyslog_server }}:{{ rsyslog_port }}   # UDP"
-  notify: restart rsyslog
-  tags:
-    - rsyslog
-
-- name: create and modify snmpd.conf
-  template:
-    src: snmpd.conf.j2
-    dest: /etc/snmp/snmpd.conf
-    mode: 0644
-  notify: restart snmpd
+- name: Setup SNMP
+  include: snmp.yml
   tags:
     - snmp
-
-- name: enable snmpd at boottime
-  service:
-    name: snmpd
-    enabled: yes
-  tags:
-    - snmp
+...
