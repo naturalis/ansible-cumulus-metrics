@@ -1,0 +1,17 @@
+---
+- name: Forward rsyslog messages to remote rsyslog server using nclu
+  nclu:
+    commands:
+      - add syslog host ipv4 {{ rsyslog_server }} port tcp 514
+    atomic: true
+    description: "Forward rsyslog messages"
+
+#- name: Forward rsyslog messages to remote rsyslog server using lineinfile
+#  lineinfile:
+#    path: /etc/rsyslog.d/11-remotesyslog.conf
+#    create: true
+#    line: "*.*   @{{ rsyslog_server }}:{{ rsyslog_port }}   # UDP"
+#  notify: restart rsyslog
+#  tags:
+#    - rsyslog
+...
