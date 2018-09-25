@@ -4,28 +4,31 @@
     path: /etc/rsyslog.d/11-remotesyslog.conf
     create: true
     line: "*.*   @{{ rsyslog_server }}:{{ rsyslog_port }}   # UDP"
-  notify: restart rsyslog
+
+- name: Add rsyslog to vrf config using lineinfile
+  lineinfile:
+    path: /etc/vrf/systemd.conf
+    create: true
+    line: "rsyslog"
 
 - name: stop rsyslog
-  service:
+  systemd:
     name: rsyslog
     state: stopped
 
 - name: disable rsyslog
-  service:
-    name: rsyslog
+  systemd:
     enabled: no
-  notify: restart rsyslog
-
+    daemon_reload: yes
+    name: rsyslog
+    
 - name: start rsyslog@mgmt
-  service:
+  systemd:
     name: rsyslog@mgmt
     state: started
-  notify: restart rsyslog
-      
+         
 - name: enable rsyslog@mgmt
-  service:
-    name: rsyslog@mgmt
+  systemd:
     enabled: yes
-  notify: restart rsyslog
+    name: rsyslog@mgmt
 ...
