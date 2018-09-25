@@ -12,23 +12,22 @@
     line: "rsyslog"
 
 - name: stop rsyslog
-  systemd:
+  service:
     name: rsyslog
     state: stopped
 
 - name: disable rsyslog
-  systemd:
-    enabled: no
-    daemon_reload: yes
+  service:
     name: rsyslog
-    
+    enabled: no
+
+- name: enable rsyslog@mgmt
+  service:
+    name: rsyslog@mgmt
+    enabled: yes
+
 - name: start rsyslog@mgmt
-  systemd:
+  service:
     name: rsyslog@mgmt
     state: started
-         
-- name: enable rsyslog@mgmt
-  systemd:
-    enabled: yes
-    name: rsyslog@mgmt
 ...
