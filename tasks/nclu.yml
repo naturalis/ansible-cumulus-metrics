@@ -12,9 +12,10 @@
     state: latest
     update_cache: yes
 
-- name: Create cron job to collect interface metrics, run every minute
+- name: Create cron job to collect interface metrics, run every 2 minutes
   cron:
     name: "net show int json"
+    minute: "*/2"
     job: "net show int json | jq -c '. | to_entries[] | {'interface': .key, 'value': .value} | . + .value | del(.value) | . + .iface_obj | del(.iface_obj) | . + .counters | del(.counters) | if .lldp != null then . + .lldp[] | del(.lldp) | del(.system_descr) else . end'
  >> /var/log/nclu-int.json"
 
