@@ -8,8 +8,10 @@
 
 - name: Restart rsyslog
   service:
-    name: rsyslog
+    name: rsyslog@mgmt
+    enabled: yes
     state: restarted
+    daemon_reload: yes
 
 - name: Restart snmpd
   service:
