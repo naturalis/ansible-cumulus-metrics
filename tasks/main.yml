@@ -2,20 +2,24 @@
 - name: Setup Prometheus node exporter
   include: prometheus.yml
   tags:
+    - metrics
     - prometheus
 
 - name: Setup SNMP
   include: snmp.yml
   tags:
+    - metrics
     - snmp
 
 - name: Forward rsyslog messages
   include: rsyslog.yml
   tags:
+    - metrics
     - rsyslog
 
 - name: Run nclu show command every minute
   include: nclu.yml
   tags:
+    - metrics
     - nclu
 ...
