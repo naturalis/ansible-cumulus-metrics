@@ -3,7 +3,7 @@
   lineinfile:
     path: /etc/rsyslog.d/11-remotesyslog.conf
     create: true
-    line: "*.*   @{{ rsyslog_server }}:{{ rsyslog_port }}   # UDP"
+    line: "*.*   @{{ cl_oob_server }}:{{ rsyslog_port }}   # UDP"
 
 - name: Add rsyslog to vrf config using lineinfile
   lineinfile:

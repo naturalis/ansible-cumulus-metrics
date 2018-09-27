@@ -1,21 +1,12 @@
 ---
-- name: Set jessie source list in apt
-  apt_repository: 
-    repo: "deb http://ftp.nl.debian.org/debian/ jessie main"
-    state: present
-    mode: 0644
-  when: 
-    - ansible_lsb.codename == "jessie"
-    - jq_use_apt
-
 - name: Install jq and update apt's cache
   apt:
     name: jq
-    state: latest
+#    state: latest
     update_cache: yes
-  when: 
+  when:
     - ansible_lsb.codename == "jessie"
-    - jq_use_apt
+#    - jq_use_apt
 
 - name: Create cron job to collect interface metrics, run every 2 minutes
   cron:
