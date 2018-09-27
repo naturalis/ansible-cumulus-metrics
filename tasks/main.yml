@@ -22,5 +22,4 @@
   tags:
     - metrics
     - nclu
-  when: jq_install
 ...
