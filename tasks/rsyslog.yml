@@ -13,11 +13,6 @@
     line: "rsyslog"
   notify: Restart rsyslog
 
-- name: stop rsyslog
-  service:
-    name: rsyslog
-    state: stopped
-
 - name: disable rsyslog
   service:
     name: rsyslog
@@ -32,7 +27,7 @@
   service:
     name: rsyslog
     state: stopped
-    
+
 - name: enable rsyslog@mgmt
   service:
     name: rsyslog@mgmt
