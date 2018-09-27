@@ -4,7 +4,9 @@
     repo: "deb http://ftp.nl.debian.org/debian/ jessie main"
     state: present
     mode: 0644
-#  when: ansible_lsb.codename == "jessie"
+  when: 
+    - ansible_lsb.codename == "jessie"
+    - jq_use_apt
 
 - name: Install jq and update apt's cache
   apt:
