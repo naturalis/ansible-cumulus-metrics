@@ -6,7 +6,7 @@
     shell: /bin/false
     system: no
     createhome: no
-  when: "'spine' in group_names or 'uplink' in group_names"
+  when: "'spines' in group_names or 'uplink' in group_names"
   tags:
     - prometheus
 
@@ -17,7 +17,7 @@
     owner: node_exporter
     group: node_exporter
     mode: 0755
-  when: "'spine' in group_names or 'uplink' in group_names"
+  when: "'spines' in group_names or 'uplink' in group_names"
   notify: Restart node_exporter
   tags:
     - prometheus
@@ -26,7 +26,7 @@
   copy:
     src: node_exporter.service
     dest: /etc/systemd/system/node_exporter@mgmt.service
-  when: "'spine' in group_names or 'uplink' in group_names"
+  when: "'spines' in group_names or 'uplink' in group_names"
   notify: Restart node_exporter
   tags:
     - prometheus
@@ -37,7 +37,7 @@
     enabled: yes
     state: started
     daemon_reload: yes
-  when: "'spine' in group_names or 'uplink' in group_names"
+  when: "'spines' in group_names or 'uplink' in group_names"
   tags:
     - prometheus
 ...

@@ -4,9 +4,6 @@
     name: jq
 #    state: latest
     update_cache: yes
-  when:
-    - ansible_lsb.codename == "jessie"
-#    - jq_use_apt
 
 - name: Create cron job to collect interface metrics, run every 2 minutes
   cron:

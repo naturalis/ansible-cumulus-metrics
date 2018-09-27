@@ -11,23 +11,27 @@
     create: true
     line: "rsyslog"
 
-- name: stop rsyslog
-  service:
+- name: stop service rsyslog, if running
+  systemd:
     name: rsyslog
     state: stopped
 
-- name: disable rsyslog
-  service:
+- name: disable service rsyslog
+  systemd:
     name: rsyslog
     enabled: no
 
-- name: enable rsyslog@mgmt
-  service:
-    name: rsyslog@mgmt
-    enabled: yes
+- name: force systemd to reread configs
+  systemd:
+    daemon_reload: yes
 
-- name: start rsyslog@mgmt
-  service:
+- name: start service rsyslog@mgmt
+  systemd:
     name: rsyslog@mgmt
     state: started
+
+- name: enable service rsyslog@mgmt
+  systemd:
+    name: rsyslog@mgmt
+    enabled: yes
 ...
