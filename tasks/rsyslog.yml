@@ -28,6 +28,11 @@
     path: /etc/systemd/system/syslog.service
     state: absent
 
+- name: stop rsyslog
+  service:
+    name: rsyslog
+    state: stopped
+    
 - name: enable rsyslog@mgmt
   service:
     name: rsyslog@mgmt
