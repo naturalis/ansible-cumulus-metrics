@@ -2,7 +2,8 @@
 - name: Install jq and update apt's cache
   apt:
     name: jq
-    update_cache: no
+    update_cache: yes
+  ignore_errors: yes
 
 - name: Create cron job to collect interface metrics, run every 2 minutes
   cron:
