@@ -6,35 +6,35 @@
     line: "action(type="omfwd" Target="{{ rsyslog_server }}" Port="{{ rsyslog_port }}" Protocol="{{ rsyslog_proto }}" Device="{{ rsyslog_interface }}")"
   notify: Restart rsyslog
 
-- name: Add rsyslog to vrf config using lineinfile
-  lineinfile:
-    path: /etc/vrf/systemd.conf
-    create: true
-    line: "rsyslog"
-  notify: Restart rsyslog
+#- name: Add rsyslog to vrf config using lineinfile
+#  lineinfile:
+#    path: /etc/vrf/systemd.conf
+#    create: true
+#    line: "rsyslog"
+#  notify: Restart rsyslog
 
-- name: disable rsyslog
-  service:
-    name: rsyslog
-    enabled: no
+#- name: disable rsyslog
+#  service:
+#    name: rsyslog
+#    enabled: no
 
-- name: wait
-  wait_for:
-    path: /etc/systemd/system/syslog.service
-    state: absent
+#- name: wait
+#  wait_for:
+#    path: /etc/systemd/system/syslog.service
+#    state: absent
 
-- name: stop rsyslog
-  service:
-    name: rsyslog
-    state: stopped
+#- name: stop rsyslog
+#  service:
+#    name: rsyslog
+#    state: stopped
 
-- name: enable rsyslog@mgmt
-  service:
-    name: rsyslog@mgmt
-    enabled: yes
+#- name: enable rsyslog@mgmt
+#  service:
+#    name: rsyslog@mgmt
+#    enabled: yes
 
-- name: start rsyslog@mgmt
-  service:
-    name: rsyslog@mgmt
-    state: started
+#- name: start rsyslog@mgmt
+#  service:
+#    name: rsyslog@mgmt
+#    state: started
 ...
