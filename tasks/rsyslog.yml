@@ -3,7 +3,7 @@
   lineinfile:
     path: /etc/rsyslog.d/11-remotesyslog.conf
     create: true
-    line: "action(type="omfwd" Target="{{ rsyslog_server }}" Port="{{ rsyslog_port }}" Protocol="{{ rsyslog_proto }}" Device="{{ rsyslog_interface }}")"
+    line: action(type="omfwd" Target="{{ rsyslog_server }}" Port="{{ rsyslog_port }}" Protocol="{{ rsyslog_proto }}" Device="{{ rsyslog_interface }}")
   notify: Restart rsyslog
 
 #- name: Add rsyslog to vrf config using lineinfile
