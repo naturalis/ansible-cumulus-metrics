@@ -23,8 +23,8 @@
     - prometheus
 
 - name: Make systemd service for node_exporter
-  copy:
-    src: node_exporter.service
+  template:
+    src: node_exporter.service.j2
     dest: /etc/systemd/system/node_exporter@mgmt.service
   when: "'spines' in group_names or 'uplink' in group_names"
   notify: Restart node_exporter
