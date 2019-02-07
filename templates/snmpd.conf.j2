@@ -14,7 +14,7 @@ rocommunity {{ snmp_ro_community }} {{ host }}
 {% endfor %}
 
 # CUMULUS CONFIG
-agentaddress 127.0.0.1
+agentAddress {{ snmp_listen }}:161
 agentxperms 777 777 snmp snmp
 agentxsocket /var/agentx/master
 createuser _snmptrapusernameX
