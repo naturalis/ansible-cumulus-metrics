@@ -17,9 +17,9 @@
     - metrics
     - rsyslog
 
-- name: Run nclu show command every minute
-  include: nclu.yml
-  tags:
-    - metrics
-    - nclu
+#- name: Run nclu show command every minute
+#  include: nclu.yml
+#  tags:
+#    - metrics
+#    - nclu
 ...
