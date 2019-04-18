@@ -2,7 +2,10 @@
 node_exporter_version: 0.16.0
 node_exporter_listen: "0.0.0.0:9100"
 cl_oob_server: 192.168.144.5
+rsyslog_server: 192.168.144.5
 rsyslog_port: 514
+rsyslog_proto: udp
+rsyslog_interface: mgmt
 snmp_ro_community: public
 snmp_location: Leiden
 snmp_contact: infra@naturalis.nl
