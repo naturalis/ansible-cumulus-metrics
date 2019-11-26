@@ -2,7 +2,7 @@
 - name: Forward rsyslog messages to remote rsyslog server using lineinfile
   lineinfile:
     path: /etc/rsyslog.d/11-remotesyslog.conf
-    create: true
+    regexp: '^action'
     line: action(type="omfwd" Target="{{ rsyslog_server }}" Port="{{ rsyslog_port }}" Protocol="{{ rsyslog_proto }}" Device="{{ rsyslog_interface }}")
   notify: Restart rsyslog
 ...
