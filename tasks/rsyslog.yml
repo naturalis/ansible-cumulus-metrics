@@ -4,5 +4,6 @@
     path: /etc/rsyslog.d/11-remotesyslog.conf
     regexp: '^action'
     line: action(type="omfwd" Target="{{ rsyslog_server }}" Port="{{ rsyslog_port }}" Protocol="{{ rsyslog_proto }}" Device="{{ rsyslog_interface }}")
+    create: yes
   notify: Restart rsyslog
 ...
